@@ -57,6 +57,9 @@ driver.find_element_by_name('Displaysection1$_assignExpenseCode$AssignExpenseCod
 driver.find_element_by_name('Displaysection1$_submitBtn').click()
 WatchURL = "https://www.capitaliq.com/CIQDotNet/Lists/Constituents.aspx?listObjectId=321989361"
 driver.get(WatchURL)
+driver.find_element_by_id('myMarketViewConstituentsDataGrid_CriterionDisplaysection2_myConstituentsDataGrid_CompanyHyperlink1_0').click()
+driver.find_element_by_id('ll_7_14_403').click()
+
 	
 	# hover to Fantasy Basketball to display the hidden dropdown menu 
 teams = driver.find_element_by_xpath("//li[@class = 'Navitem Navitem-main Navitem-fantasy Va-top Fl-start Topstart']")
