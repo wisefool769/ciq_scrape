@@ -3,6 +3,7 @@ import selenium
 import time
 from selenium import webdriver
 from configparser import ConfigParser
+import traceback
 
 class Scraper(object):
     def __init__(self):
@@ -26,7 +27,7 @@ class Scraper(object):
         self.driver.find_element_by_id('myLogin_myPassword').send_keys(self.password)
         time.sleep(self.sleep_interval)
         self.driver.find_element_by_name('myLogin$myLoginButton').click()
-        time.sleep(sleep_interval)
+        time.sleep(self.sleep_interval)
         self.driver.find_element_by_name('Displaysection1$_assignExpenseCode$AssignExpenseCodeMode').click()
         self.driver.find_element_by_name('Displaysection1$_submitBtn').click()
 
@@ -44,6 +45,7 @@ class Scraper(object):
             _ = input("Push any key to quit: ")
             self.driver.quit()
         except Exception:
+            traceback.print_exc()
             _ = input("Push any key to quit: ")
             self.driver.quit()
 
