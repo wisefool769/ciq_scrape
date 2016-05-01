@@ -55,6 +55,8 @@ driver.find_element_by_name('myLogin$myLoginButton').click()
 time.sleep(sleep_interval)
 driver.find_element_by_name('Displaysection1$_assignExpenseCode$AssignExpenseCodeMode').click()
 driver.find_element_by_name('Displaysection1$_submitBtn').click()
+WatchURL = "https://www.capitaliq.com/CIQDotNet/Lists/Constituents.aspx?listObjectId=321989361"
+driver.get(WatchURL)
 	
 	# hover to Fantasy Basketball to display the hidden dropdown menu 
 teams = driver.find_element_by_xpath("//li[@class = 'Navitem Navitem-main Navitem-fantasy Va-top Fl-start Topstart']")
