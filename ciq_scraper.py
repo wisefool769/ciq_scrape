@@ -1,27 +1,7 @@
-# -*- coding: utf-8 -*-
-"""
-Spyder Editor
-
-This is a temporary script file.
-"""
 import ipdb
-import requests
 import selenium
-from bs4 import BeautifulSoup
-import time
-#!/usr/bin/python
-
 import time
 from selenium import webdriver
-from selenium.webdriver import PhantomJS
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.common.action_chains import ActionChains
-from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
-from sys import argv
-import click
-import sys
-
 from configparser import ConfigParser
 
 class Scraper(object):
@@ -49,6 +29,12 @@ class Scraper(object):
         time.sleep(sleep_interval)
         self.driver.find_element_by_name('Displaysection1$_assignExpenseCode$AssignExpenseCodeMode').click()
         self.driver.find_element_by_name('Displaysection1$_submitBtn').click()
+
+    def get_comp_data(self): 
+        watch_url = "https://www.capitaliq.com/CIQDotNet/Lists/Constituents.aspx?listObjectId=321989361"
+        self.driver.get(watch_url)
+        self.driver.find_element_by_id('myMarketViewConstituentsDataGrid_CriterionDisplaysection2_myConstituentsDataGrid_CompanyHyperlink1_0').click()
+        self.driver.find_element_by_id('ll_7_14_403').click()
     
     def main(self):
         try:
@@ -64,6 +50,9 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+	
+	
 
  
  
