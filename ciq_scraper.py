@@ -3,6 +3,7 @@ import selenium
 import time
 from selenium import webdriver
 from configparser import ConfigParser
+import traceback
 
 class Scraper(object):
     def __init__(self):
@@ -22,29 +23,34 @@ class Scraper(object):
         self.driver.get(url)
 
     def do_login(self):
-        self.driver.find_element_by_id('myLogin_myUsername').send_keys(self.username)	
+        self.driver.find_element_by_id('myLogin_myUsername').send_keys(self.username)   
         self.driver.find_element_by_id('myLogin_myPassword').send_keys(self.password)
         time.sleep(self.sleep_interval)
         self.driver.find_element_by_name('myLogin$myLoginButton').click()
-        time.sleep(sleep_interval)
+        time.sleep(self.sleep_interval)
         self.driver.find_element_by_name('Displaysection1$_assignExpenseCode$AssignExpenseCodeMode').click()
         self.driver.find_element_by_name('Displaysection1$_submitBtn').click()
 
     def get_comp_data(self): 
         watch_url = "https://www.capitaliq.com/CIQDotNet/Lists/WatchLists.aspx"
         self.driver.get(watch_url)
-        self.driver.find_element_by_partial_link_text('Thor PG').click()
-        self.driver.find_element_by_id('ll_7_14_403').click()
+        time.sleep(self.sleep_interval)
+        self.driver.find_element_by_partial_link_text('CBD GI').click()
+        self.driver.find_element_by_id('ll_35_112_1936').click()
+        self.driver.find_element_by_id('myMarketViewConstituentsDataGrid_CriterionDisplaysection2_myConstituentsDataGrid_CompanyHyperlink1_0').click()
+        self.driver.find_element_by_id('ll_7_14_403_top').click()
+        
     
     def main(self):
         try:
             self.open_browser()
             self.do_login()
             self.get_comp_data()
-            _ = input("Push any key to quit: ")
+            _ = raw_input("Push any key to quit: ")
             self.driver.quit()
         except Exception:
-            _ = input("Push any key to quit: ")
+            traceback.print_exc()
+            _ = raw_input("Push any key to quit: ")
             self.driver.quit()
 
 def main():
@@ -53,9 +59,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-	
-	
-
- 
- 
