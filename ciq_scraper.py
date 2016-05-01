@@ -40,8 +40,11 @@ class Scraper(object):
         try:
             self.open_browser()
             self.do_login()
+            self.get_comp_data()
+            _ = input("Push any key to quit: ")
             self.driver.quit()
         except Exception:
+            _ = input("Push any key to quit: ")
             self.driver.quit()
 
 def main():
