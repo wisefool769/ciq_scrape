@@ -32,9 +32,9 @@ class Scraper(object):
         self.driver.find_element_by_name('Displaysection1$_submitBtn').click()
 
     def get_comp_data(self): 
-        watch_url = "https://www.capitaliq.com/CIQDotNet/Lists/Constituents.aspx?listObjectId=321989361"
+        watch_url = "https://www.capitaliq.com/CIQDotNet/Lists/WatchLists.aspx"
         self.driver.get(watch_url)
-        self.driver.find_element_by_id('myMarketViewConstituentsDataGrid_CriterionDisplaysection2_myConstituentsDataGrid_CompanyHyperlink1_0').click()
+        self.driver.find_element_by_partial_link_text('Thor PG').click()
         self.driver.find_element_by_id('ll_7_14_403').click()
     
     def main(self):
