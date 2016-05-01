@@ -22,17 +22,15 @@ from sys import argv
 import click
 import sys
 
-chrome_driver_path = "/usr/local/bin/chromedriver"
-
-
 from configparser import ConfigParser
 
+chrome_driver_path = "/usr/local/bin/chromedriver"
 cp = ConfigParser()
 cp.read("credentials.ini")
 settings = cp["defaults"]
 username = settings["username"]
 password = settings["password"]
-
+sleep_interval = 1
 
 
 
@@ -40,8 +38,11 @@ password = settings["password"]
 		# DesiredCapabilities.PHANTOMJS['phantomjs.page.settings.userAgent'] = 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:16.0) Gecko/20121026 Firefox/16.0'
 		# driver = webdriver.PhantomJS(executable_path='/Users/devin.mancuso/node_modules/phantomjs/bin/phantomjs')
 	# else:
+
+
 chrome_options = webdriver.ChromeOptions()
 driver = webdriver.Chrome(executable_path=chrome_driver_path, chrome_options=chrome_options)
+
 # driver.set_window_size(1920, 1080)
 driver.maximize_window()
 
@@ -49,19 +50,19 @@ url = "https://www.capitaliq.com/CIQDotNet/Login.aspx"
 driver.get(url)
 driver.find_element_by_id('myLogin_myUsername').send_keys(username)	
 driver.find_element_by_id('myLogin_myPassword').send_keys(password)
-time.sleep(8)
+time.sleep(sleep_interval)
 driver.find_element_by_name('myLogin$myLoginButton').click()
-time.sleep(8)
+time.sleep(sleep_interval)
 driver.find_element_by_name('Displaysection1$_assignExpenseCode$AssignExpenseCodeMode').click()
 	
 	# hover to Fantasy Basketball to display the hidden dropdown menu 
 teams = driver.find_element_by_xpath("//li[@class = 'Navitem Navitem-main Navitem-fantasy Va-top Fl-start Topstart']")
 hov = ActionChains(driver).move_to_element(teams)
 hov.perform()
-time.sleep(1)
+time.sleep(sleep_interval)
 
 driver.find_element_by_xpath("//a[text() = '"+ teamname +"']").click()
-time.sleep(2)
+time.sleep(sleep_interval)
 
 
 driver.quit()
